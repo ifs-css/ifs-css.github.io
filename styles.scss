@@ -1,0 +1,124 @@
+$mediaMaxWidth: 1000px;
+$mediaMaxWidth2: 700px;
+
+$colors: (
+  white: #FFFFFF,
+  mercuryGrey: #E8E8E8,
+  altoGrey: #D1D1D1,
+  silver: #BDBDBD,
+  dustyGrey: #999999,
+);
+
+@function toRem($px) {
+	@return 0.0625 * $px + rem;
+}
+
+@each $name, $color in $colors {
+	.background-#{$name} {
+		background-color: $color;
+	}
+}
+
+@mixin border($color) {
+	border-style: solid;
+    border-width: toRem(1);
+	border-color: $color;
+}
+
+.full-page{
+	@include border(black);
+	display: flex;
+	flex-direction: column;
+
+	.title{
+		@include border(black);
+		height: 4rem;
+		margin: auto;
+		font-size: 3rem ;
+		font-family: 'Brush Script MT';
+	}
+
+	.cookbook{
+		@include border(black);
+		display: flex;
+		align-items: center;
+
+		@media (max-width: $mediaMaxWidth) {
+			flex-direction: column;
+		}
+
+		.tile-title{
+			text-align: center;
+			padding: 0.5rem;
+			font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	 	};
+	  
+
+		.table-of-content{
+			@include border(black);
+			flex-basis: 25%;
+		}
+
+		.dishes{
+			width: 100%;
+
+			.dish{
+				@include border(black);
+				margin: toRem(30);
+				flex-basis: 70%;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: space-around;
+			}
+	
+			.dish-name{
+				@include border(black);
+				height: 2rem;
+				align-self: auto;
+			}
+	
+			.dish-content{
+				@include border(black);
+				margin: toRem(30);
+				width: calc(100% - 5rem);
+				display: flex;
+				justify-content: space-evenly;
+	
+				@media (max-width: $mediaMaxWidth2) {
+					flex-direction: column;
+				}
+			}
+
+			.photo_with_recipe{
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: space-around;
+
+				.photo{
+					margin: toRem(30);
+					@include border(black);
+				}
+
+				.recipe{
+					width: toRem(500);
+					margin: toRem(30);
+					@include border(black);
+				}
+			}
+
+			.ingridients{
+				@include border(black);
+				align-self: center;
+			}
+		}
+	}
+}
+
+
+
+
+
+
+
